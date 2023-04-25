@@ -5,8 +5,10 @@ services:
     image: 'penguintech/mariadbgalera'
     build: .
     ports:
-      - 9000-9010:9000
-      - 9100-9110:9001
+      - 3306:3306 
+      - 4444:4444 
+      - 4567:4567 
+      - 4568:4568 
     networks:
       - mariadbgalera
     healthcheck:
