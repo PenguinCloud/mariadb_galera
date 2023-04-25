@@ -1,5 +1,20 @@
 ---
 version: "2.4"
 services:
-  app:
-    image: penguintech/core-ansible
+  mariadbgalera:
+    image: 'penguintech/mariadbgalera'
+    build: .
+    ports:
+      - 9000-9010:9000
+      - 9100-9110:9001
+    networks:
+      - mariadbgalera
+    healthcheck:
+      test: ["CMD", "ansible-playbook", "entrypoint.yml", "--tag", "test"]
+      interval: 5m
+      timeout: 10s
+      retries: 5
+      start_period: 5s
+
+networks:
+  mariadbgalera:
