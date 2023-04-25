@@ -1,0 +1,5 @@
+---
+- name: Template config file for galera 
+  template:
+    src: templates/60-galera.j2
+    dest: /etc/mysql/mariadb.conf.d/60-galera.cnf

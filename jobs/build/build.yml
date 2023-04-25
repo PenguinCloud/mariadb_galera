@@ -2,3 +2,11 @@
   apt:
     name: mariadb-server
     update_cache: yes
+
+- name: Give permissions to directory 
+  ansible.builtin.file:
+    path: /etc/mysql/mariadb.conf.d
+    state: directory
+    recurse: yes
+    owner: "{{ run.user }}"
+    group: "{{ run.user }}"
