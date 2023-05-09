@@ -1,0 +1,27 @@
+- name: Install maria db
+  apt:
+    name: mariadb-server
+    update_cache: yes
+
+- name: Give permissions to directory 
+  ansible.builtin.file:
+    path: /etc/mysql/mariadb.conf.d
+    state: directory
+    recurse: yes
+    owner: "{{ run.user }}"
+    group: "{{ run.user }}"
+
+- name: Give permissions to directory 
+  ansible.builtin.file:
+    path: /var/lib/mysql
+    state: directory
+    recurse: yes
+    owner: "{{ run.user }}"
+    group: "{{ run.user }}"
+
+- name: Give permissions to directory 
+  ansible.builtin.file:
+    path: /run/mysqld
+    state: directory
+    owner: "{{ run.user }}"
+    group: "{{ run.user }}"

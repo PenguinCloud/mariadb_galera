@@ -1,0 +1,18 @@
+---
+- name: Template config file for galera 
+  template:
+    src: templates/60-galera.j2
+    dest: /etc/mysql/mariadb.conf.d/60-galera.cnf
+
+# - name: Start MariaDB service
+#  shell: mysqld --console      
+
+#- name: Start MariaDB service
+#  shell: mysqladmin shutdown 
+
+#- name: Create database
+#  mysql_db:
+#    name: "{{ mysql_db_name }}"
+#    state: present
+#    login_user: "{{ mysql_db_user }}"
+#    login_password: "{{ mysql_db_password }}"
