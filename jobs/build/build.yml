@@ -1,6 +1,9 @@
+---
 - name: Install maria db
   apt:
-    name: mariadb-server
+    name: 
+      - mariadb-server
+      - python3-mysqldb
     update_cache: yes
 
 - name: Give permissions to directory 
@@ -26,5 +29,5 @@
     owner: "{{ run.user }}"
     group: "{{ run.user }}"
 
-- name: Create rooty user 
+
   

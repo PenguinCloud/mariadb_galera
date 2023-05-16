@@ -2,3 +2,7 @@ run:
   user: ptg-user
 app:
   title: "{{ lookup('ansible.builtin.env', 'APP_TILE') }}"
+
+database:
+  password: "{{ lookup('ansible.builtin.env', 'DB_PASSWORD') }}"
+  host: "{{ lookup('ansible.builtin.env', 'DB_HOST') }}"

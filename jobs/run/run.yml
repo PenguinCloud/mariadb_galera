@@ -1,4 +1,43 @@
 ---
+- name: Start MariaDB service
+  shell: mysqld --console      
+
+- name: Create user account
+  mysql_user:
+    name: "{{ run.user }}"
+    password: "{{ database.password }}"
+    host: "{{ database.host }}"
+    state: present
+
+- name: Remove anonymous users
+  mysql_user:
+    name: ''
+    password: "{{ database.password }}"
+    host: "{{ database.host }}"
+    state: absent
+
+# - name: Disable remote root logins
+#  mysql_user:
+#    name: root
+#    host: '%'
+#    password: ''
+#    state: present
+#    login_options:
+#      - --skip-grant-tables
+
+# - name: Flush privileges
+#  community.mysql.mysql_query:
+#    query: "FLUSH PRIVILEGES;"
+
+
+# - name: Create database
+#  mysql_database:
+#    name: my_database
+#    state: present
+#    user: ptg
+#    password: your_password
+
+
 - name: Template config file for galera 
   template:
     src: templates/60-galera.j2
