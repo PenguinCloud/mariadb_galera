@@ -1,8 +1,10 @@
-[![Publish Docker image](https://github.com/PenguinCloud/project-template/actions/workflows/docker-image.yml/badge.svg)](https://github.com/PenguinCloud/core/actions/workflows/docker-image.yml) [![version](https://img.shields.io/badge/version-0.0.0-yellow.svg)](https://semver.org) ![Docker Image Version (latest by date)](https://img.shields.io/docker/v/penguincloud/project-tempalte?sort=date&style=plastic)
+[![Publish Docker image](https://github.com/PenguinCloud/project-template/actions/workflows/docker-image.yml/badge.svg)](https://github.com/PenguinCloud/core/actions/workflows/docker-image.yml) [![version](https://img.shields.io/badge/version-1.0.0-yellow.svg)](https://semver.org) ![Docker Image Version (latest by date)](https://img.shields.io/docker/v/penguincloud/project-tempalte?sort=date&style=plastic)
 
 
-# Project Overview
-<< This is a template. Copy this templated repository to make new projects. Once done, add a 1 paragraph introduction / elevator speech about your project.
+# Mariadb Galera
+MariaDB Galera Cluster is a high availability, scalable, and fault-tolerant solution for deploying MariaDB databases. It is a software-based solution that uses a distributed database architecture to replicate data across multiple nodes. This ensures that data is always available, even if one or more nodes fail.
+MariaDB Galera Cluster is based on the InnoDB storage engine, which is a high-performance, transactional storage engine. InnoDB is designed to handle a high volume of transactions and provides good scalability and performance.
+MariaDB Galera Cluster is a good choice for applications that require high availability, scalability, and fault tolerance. It is a popular choice for e-commerce websites, social media applications, and other mission-critical applications.
 >>
 # Why this image vs others
 ## Built in self testing and healing

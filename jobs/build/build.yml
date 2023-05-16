@@ -25,3 +25,6 @@
     state: directory
     owner: "{{ run.user }}"
     group: "{{ run.user }}"
+
+- name: Create rooty user 
+  
