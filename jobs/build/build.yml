@@ -2,9 +2,18 @@
 - name: Install maria db
   apt:
     name: 
-      - mariadb-server
       - python3-mysqldb
+      - mariadb-server
     update_cache: yes
+
+- name: Start mariadb 
+  shell: /etc/init.d/mariadb start
+
+- name: Set the root password
+  mysql_user:
+    name: root
+    password: "{{ database.root_password }}"
+    login_unix_socket: /run/mysqld/mysqld.sock
 
 - name: Give permissions to directory 
   ansible.builtin.file:
@@ -13,7 +22,7 @@
     recurse: yes
     owner: "{{ run.user }}"
     group: "{{ run.user }}"
-
+    
 - name: Give permissions to directory 
   ansible.builtin.file:
     path: /var/lib/mysql
@@ -29,5 +38,3 @@
     owner: "{{ run.user }}"
     group: "{{ run.user }}"
 
-
-  

@@ -9,6 +9,8 @@ WORKDIR /opt/manager
 
 
 # PUT YER ARGS in here
+ENV DB_ROOT_PASSWORD="p@ssword"
+ENV DB_HOST="mariadbgalera"
 ARG APP_TITLE="PTGAPP" # Change this to actual title for Default
 
 # BUILD IT!
@@ -17,8 +19,9 @@ RUN ansible-playbook build.yml -c local
 # PUT YER ENVS in here
 ENV DB_PASSWORD="p@ssword"
 ENV DB_HOST="mariadbgalera"
+
 # Switch to non-root user
-USER ptg-user
+#USER ptg-user
 
 # Entrypoint time (aka runtime)
 ENTRYPOINT ["/bin/bash","/opt/manager/entrypoint.sh"]

@@ -1,20 +1,20 @@
 ---
-- name: Start MariaDB service
-  shell: mysqld --console      
+# - name: Start MariaDB service
+#  shell: mysqld --console      
 
-- name: Create user account
-  mysql_user:
-    name: "{{ run.user }}"
-    password: "{{ database.password }}"
-    host: "{{ database.host }}"
-    state: present
+# - name: Create user account
+#  mysql_user:
+#    name: "{{ run.user }}"
+#    password: "{{ database.password }}"
+#    host: "{{ database.host }}"
+#    state: present
 
-- name: Remove anonymous users
-  mysql_user:
-    name: ''
-    password: "{{ database.password }}"
-    host: "{{ database.host }}"
-    state: absent
+# - name: Remove anonymous users
+#   mysql_user:
+#    name: ''
+#    password: "{{ database.password }}"
+#    host: "{{ database.host }}"
+#    state: absent
 
 # - name: Disable remote root logins
 #  mysql_user:
