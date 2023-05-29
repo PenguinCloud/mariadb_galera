@@ -23,7 +23,7 @@ ENV DB_HOST="mariadbgalera"
 ENV DB_USER="ptg-user"
 
 # Switch to non-root user
-# USER ptg-user
+USER mysql
 
 # Entrypoint time (aka runtime)
 ENTRYPOINT ["/bin/bash","/opt/manager/entrypoint.sh"]

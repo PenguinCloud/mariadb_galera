@@ -1,4 +1,13 @@
 ---
+- name: Add mysql as a Group
+  group:
+    name: mysql
+
+- name: Add mysql as a User
+  user:
+    name: mysql
+    group: mysql
+
 - name: Install maria db
   apt:
     name: 
