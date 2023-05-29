@@ -1,6 +1,20 @@
 ---
 # - name: Start MariaDB service
-#  shell: mysqld --console      
+#  shell: /etc/init.d/mariadb restart
+ 
+# - name: Create new database
+#  mysql_db:
+#    name: my_database
+#    state: present
+
+# - name: Add new user
+#  mysql_user:
+#    name: my_user
+#    password: "{{ mariadb_user_password }}"
+#    host: "{{ ansible_hostname }}"
+#    state: present
+#    privileges:
+#      - "ALL"
 
 # - name: Create user account
 #  mysql_user:
@@ -38,10 +52,10 @@
 #    password: your_password
 
 
-- name: Template config file for galera 
-  template:
-    src: templates/60-galera.j2
-    dest: /etc/mysql/mariadb.conf.d/60-galera.cnf
+# - name: Template config file for galera 
+#  template:
+#    src: templates/60-galera.j2
+#    dest: /etc/mysql/mariadb.conf.d/60-galera.cnf
 
     
 # - name: Start MariaDB service
