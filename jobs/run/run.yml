@@ -1,4 +1,10 @@
 ---
+- name: Template config file to allow for remote access
+  template:
+    src: templates/50-server-cnf
+    dest: /etc/mysql/mariadb.conf.d/50-server.cnf
+    force: yes
+
 # - name: Start MariaDB service
 #  shell: /etc/init.d/mariadb restart
  
