@@ -5,74 +5,52 @@
     dest: /etc/mysql/mariadb.conf.d/50-server.cnf
     force: yes
 
-# - name: Start MariaDB service
-#  shell: /etc/init.d/mariadb restart
- 
-# - name: Create new database
-#  mysql_db:
-#    name: my_database
+- name: Start MariaDB service
+  shell: mysqld_safe --skip-networking &
+
+- name: Wait for MariaDB to start
+  command: mysqladmin ping -u root -p"{{ database.root_password }}" -h localhost
+  register: result
+  until: result.rc == 0
+  retries: 30
+  delay: 10
+
+- name: Create MySQL database
+  community.mysql.mysql_db:
+    login_user: root
+    login_password: "{{ database.root_password }}"
+    name: "{{ database.name }}"
+    state: present
+
+- name: Check if database exists
+  shell: mysql -u root -p'{{ database.root_password }}' -e "SHOW DATABASES LIKE '{{ database.name }}';"
+  register: db_result
+  ignore_errors: True
+
+- name: Display result
+  debug: 
+    msg: "Database {{ database.name }} exists"
+  when: "database.name in db_result.stdout"
+
+- name: Display result
+  debug: 
+    msg: "Database {{ database.name }} does not exist"
+  when: "database.name not in db_result.stdout"
+
+# - name: Create MySQL user and grant all privileges on the database
+#  community.mysql.mysql_user:
+#    login_user: root
+#    login_password: "{{ database.root_password }}"
+#    name: "{{ MYSQL_USER }}"
+#    password: "{{ MYSQL_PASSWORD }}"
+#    host_all: yes
+#    priv: "{{ MYSQL_DATABASE }}.*:ALL"
 #    state: present
 
-# - name: Add new user
-#  mysql_user:
-#    name: my_user
-#    password: "{{ mariadb_user_password }}"
-#    host: "{{ ansible_hostname }}"
-#    state: present
-#    privileges:
-#      - "ALL"
-
-# - name: Create user account
-#  mysql_user:
-#    name: "{{ run.user }}"
-#    password: "{{ database.password }}"
-#    host: "{{ database.host }}"
-#    state: present
-
-# - name: Remove anonymous users
-#   mysql_user:
-#    name: ''
-#    password: "{{ database.password }}"
-#    host: "{{ database.host }}"
-#    state: absent
-
-# - name: Disable remote root logins
-#  mysql_user:
-#    name: root
-#    host: '%'
-#    password: ''
-#    state: present
-#    login_options:
-#      - --skip-grant-tables
-
-# - name: Flush privileges
-#  community.mysql.mysql_query:
-#    query: "FLUSH PRIVILEGES;"
-
-
-# - name: Create database
-#  mysql_database:
-#    name: my_database
-#    state: present
-#    user: ptg
-#    password: your_password
-
+# - name: Stop mariadb 
+#  shell: mysqladmin -u root -p "{{ database.root_password }}" shutdown
 
 # - name: Template config file for galera 
 #  template:
 #    src: templates/60-galera.j2
 #    dest: /etc/mysql/mariadb.conf.d/60-galera.cnf
-
-    
-# - name: Start MariaDB service
-#  shell: mysqld --console      
-
-#- name: Start MariaDB service
-#  shell: mysqladmin shutdown 
-
-#- name: Create database
-#  mysql_db:
-#    name: "{{ mysql_db_name }}"
-#    state: present
-#    login_user: "{{ mysql_db_user }}"
-#    login_password: "{{ mysql_db_password }}"

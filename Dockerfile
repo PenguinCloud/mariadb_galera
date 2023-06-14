@@ -19,7 +19,7 @@ RUN ansible-playbook build.yml -c local
 # PUT YER ENVS in here
 ENV DB_ROOT_PASSWORD="p@ssword"
 ENV DB_PASSWORD="p@ssword1"
-ENV DB_HOST="mariadbgalera"
+ENV DB_NAME="database1"
 ENV DB_USER="ptg-user"
 
 # Switch to non-root user

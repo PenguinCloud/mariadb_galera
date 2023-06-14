@@ -7,5 +7,5 @@ database:
   root_password: "{{ lookup('ansible.builtin.env', 'DB_ROOT_PASSWORD') }}"
   password: "{{ lookup('ansible.builtin.env', 'DB_PASSWORD') }}"
   ptg_user_password: "{{ lookup('ansible.builtin.env', 'PTG_USER_PASSWOPRD') }}"
-  host: "{{ lookup('ansible.builtin.env', 'DB_HOST') }}"
+  name: "{{ lookup('ansible.builtin.env', 'DB_NAME') }}"
   user: "{{ lookup('ansible.builtin.env', 'DB_USER') }}"
