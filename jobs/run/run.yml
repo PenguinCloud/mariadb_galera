@@ -37,18 +37,18 @@
     msg: "Database {{ database.name }} does not exist"
   when: "database.name not in db_result.stdout"
 
-# - name: Create MySQL user and grant all privileges on the database
-#  community.mysql.mysql_user:
-#    login_user: root
-#    login_password: "{{ database.root_password }}"
-#    name: "{{ MYSQL_USER }}"
-#    password: "{{ MYSQL_PASSWORD }}"
-#    host_all: yes
-#    priv: "{{ MYSQL_DATABASE }}.*:ALL"
-#    state: present
+- name: Create MySQL user and grant all privileges on the database
+  community.mysql.mysql_user:
+    login_user: root
+    login_password: "{{ database.root_password }}"
+    name: "{{ database.user }}"
+    password: "{{ database.user_password }}"
+    host: "%"
+    priv: "{{ database.name }}.*:ALL"
+    state: present
 
-# - name: Stop mariadb 
-#  shell: mysqladmin -u root -p "{{ database.root_password }}" shutdown
+- name: Stop mariadb 
+  shell: mysqladmin -u root -p"{{ database.root_password }}" shutdown
 
 # - name: Template config file for galera 
 #  template:
