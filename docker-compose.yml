@@ -6,12 +6,35 @@ services:
     image: 'penguintech/mariadbgalera'
     build: .
     ports:
-      - 3306:3306 
-      - 4444:4444 
-      - 4567:4567 
-      - 4568:4568 
+      - 33061:3306 
+      - 44441:4444 
+      - 45671:4567 
+      - 45681:4568 
     networks:
       - mariadbgalera
+    healthcheck:
+      test: ["CMD", "ansible-playbook", "entrypoint.yml", "--tag", "test"]
+      interval: 5m
+      timeout: 10s
+      retries: 5
+      start_period: 5s
+
+  db2:
+    hostname: db2
+    image: 'penguintech/mariadbgalera'
+    build: .
+    ports:
+      - 33062:3306 
+      - 44442:4444 
+      - 45672:4567 
+      - 45682:4568 
+    networks:
+      - mariadbgalera
+    environment:
+      - DB_PASSWORD=password1
+      - DB_NAME=database2
+      - DB_USER=user1
+      - WSREP=false
     healthcheck:
       test: ["CMD", "ansible-playbook", "entrypoint.yml", "--tag", "test"]
       interval: 5m

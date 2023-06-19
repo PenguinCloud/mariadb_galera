@@ -44,7 +44,7 @@
     name: "{{ database.user }}"
     password: "{{ database.user_password }}"
     host: "%"
-    priv: "{{ database.name }}.*:ALL"
+    priv: "*.*:ALL"
     state: present
 
 - name: Stop mariadb 
