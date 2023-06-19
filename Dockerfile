@@ -23,7 +23,7 @@ ENV DB_NAME="database1"
 ENV DB_USER="ptg-user"
 ENV CLUSTER_NAME="Ptg_cluster"
 ENV CLUSTER_ADDRESSES="db1,db2"
-ENV BOOTSTRAP="true"
+ENV WSREP="true"
 
 # Switch to non-root user
 USER ptg-user

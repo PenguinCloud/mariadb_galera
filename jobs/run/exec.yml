@@ -1,5 +1,7 @@
 - name: Bootstrap Galera Cluster
-  shell: galera_new_cluster
-  when: bootstrap | bool
-  environment:
-    BOOTSTRAP: "{{ bootstrap }}"
+  shell: mysqld_safe --wsrep-new-cluster &
+  when: wsrep == "true"
+
+- name: Start MariaDB service without bootstrapping
+  shell: mysqld_safe &
+  when: wsrep == "false"

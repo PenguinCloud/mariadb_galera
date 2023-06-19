@@ -14,4 +14,4 @@ cluster:
   addresses: "{{ lookup('ansible.builtin.env', 'CLUSTER_ADDRESSES') }}"
   name: "{{ lookup('ansible.builtin.env', 'CLUSTER_NAME') }}"
 
-bootstrap: "{{ lookup('ansible.builtin.env', 'BOOTSTRAP') }}"
+wsrep: "{{ lookup('ansible.builtin.env', 'WSREP') }}"
