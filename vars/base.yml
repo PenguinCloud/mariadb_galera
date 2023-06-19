@@ -9,3 +9,9 @@ database:
   user_password: "{{ lookup('ansible.builtin.env', 'PTG_USER_PASSWOPRD') }}"
   name: "{{ lookup('ansible.builtin.env', 'DB_NAME') }}"
   user: "{{ lookup('ansible.builtin.env', 'DB_USER') }}"
+
+cluster:
+  addresses: "{{ lookup('ansible.builtin.env', 'CLUSTER_ADDRESSES') }}"
+  name: "{{ lookup('ansible.builtin.env', 'CLUSTER_NAME') }}"
+
+bootstrap: "{{ lookup('ansible.builtin.env', 'BOOTSTRAP') }}"

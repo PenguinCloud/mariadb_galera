@@ -50,7 +50,8 @@
 - name: Stop mariadb 
   shell: mysqladmin -u root -p"{{ database.root_password }}" shutdown
 
-# - name: Template config file for galera 
-#  template:
-#    src: templates/60-galera.j2
-#    dest: /etc/mysql/mariadb.conf.d/60-galera.cnf
+- name: Template config file for galera 
+  template:
+    src: templates/60-galera.j2
+    dest: /etc/mysql/mariadb.conf.d/60-galera.cnf
+    force: yes

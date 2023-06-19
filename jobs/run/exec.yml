@@ -1,0 +1,5 @@
+- name: Bootstrap Galera Cluster
+  shell: galera_new_cluster
+  when: bootstrap | bool
+  environment:
+    BOOTSTRAP: "{{ bootstrap }}"

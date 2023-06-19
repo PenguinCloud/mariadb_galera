@@ -21,6 +21,9 @@ ENV DB_ROOT_PASSWORD="p@ssword"
 ENV DB_PASSWORD="p@ssword1"
 ENV DB_NAME="database1"
 ENV DB_USER="ptg-user"
+ENV CLUSTER_NAME="Ptg_cluster"
+ENV CLUSTER_ADDRESSES="db1,db2"
+ENV BOOTSTRAP="true"
 
 # Switch to non-root user
 USER ptg-user
