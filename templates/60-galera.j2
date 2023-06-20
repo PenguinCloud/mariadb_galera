@@ -13,8 +13,8 @@ wsrep_sst_method          = rsync
 binlog_format            = row
 default_storage_engine   = InnoDB
 innodb_autoinc_lock_mode = 2
-wsrep_node_address        = ${WSREP_NODE_ADDRESS}
-wsrep_node_name           = ${HOSTNAME}
+wsrep_node_address        = {{ node.address}}
+wsrep_node_name           = {{ node.name }}
 
 # Allow server to accept connections on all interfaces.
 bind-address = 0.0.0.0
