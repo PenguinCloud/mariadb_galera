@@ -35,6 +35,8 @@ services:
       - DB_NAME=database2
       - DB_USER=user1
       - WSREP=false
+      - NODE_NAMe=node2
+      - NODE_ADDRESS=db2
     healthcheck:
       test: ["CMD", "ansible-playbook", "entrypoint.yml", "--tag", "test"]
       interval: 5m
