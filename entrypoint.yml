@@ -10,11 +10,11 @@
         file: "vars/{{ BUILD_ENVIRONMENT }}.yml"
       tags:
         - always
-      ignore_errors: yes
+      ignore_errors: true
     - name: Include Special Variables
       include_vars:
         file: "vars/{{ lookup('env', 'COMPUTE_ENV') | default( 'base', True) }}.yml"
-      ignore_errors: yes
+      ignore_errors: true
     - name: Run And Configure
       include_tasks:
         file: jobs/run/run.yml
@@ -24,4 +24,3 @@
     - name: Run tests to make sure app is running as expected
       include_tasks:
         file: jobs/tests/tests.yml
-

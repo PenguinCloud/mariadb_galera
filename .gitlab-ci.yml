@@ -1,16 +1,14 @@
 # PenguinTech
 variables:
   RELEASE_VERSION: v4.1.1
+  SCAN_KUBERNETES_MANIFESTS: "false"
 
 include:
   - template: Code-Quality.gitlab-ci.yml
   - template: Security/SAST.gitlab-ci.yml
-  #- template: Jobs/Secret-Detection.gitlab-ci.yml
+  # -template: Jobs/Secret-Detection.gitlab-ci.yml
 
-variables:
-  SCAN_KUBERNETES_MANIFESTS: "false"  
-
-#secret_detection:
+# secret_detection:
 #  variables:
 #    SECRET_DETECTION_HISTORIC_SCAN: "true"
 

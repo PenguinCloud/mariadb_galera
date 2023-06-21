@@ -6,10 +6,10 @@ services:
     image: 'penguintech/mariadbgalera'
     build: .
     ports:
-      - 33061:3306 
+      - 33061:3306
       - 44441:4444 
       - 45671:4567
-      - 45681:4568 
+      - 45681:4568
     networks:
       - mariadbgalera
     healthcheck:
@@ -46,4 +46,3 @@ services:
 
 networks:
   mariadbgalera:
-
