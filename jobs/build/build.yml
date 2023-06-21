@@ -33,8 +33,8 @@
       '(?i)Reload privilege tables now\? \[Y/n\]':
         - 'y'
 
-- name: Start mariadb 
-  shell: /etc/init.d/mariadb stop   
+- name: Start mariadb
+  shell: /etc/init.d/mariadb stop
 
 - name: Set permission for directory in order to template the config files
   ansible.builtin.file:
