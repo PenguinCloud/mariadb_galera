@@ -44,7 +44,7 @@ basic-code-check:
   rules:
     - if: $CI_COMMIT_BRANCH == "alpha"
   before_script:
-    - shfmt -mn -l -w entrypoint.sh  
+    - shfmt -mn -l -w entrypoint.sh
   script:
     - shellcheck *.sh  | tee  /tmp/$CI_COMMIT_SHA/reports/shellcheck-lint-report.txt
     - ansible-lint . --exclude .gitlab-ci.yml -x expirimental --profile basic -f codeclimate | tee /tmp/$CI_COMMIT_SHA/reports/ansible-lint-report.json
@@ -55,13 +55,13 @@ basic-code-check:
     paths:
       - /tmp/$CI_COMMIT_SHA/reports/*
     expire_in: 1 week
-    
+
 prod-code-check:
   stage: lint
   rules:
     - if: $CI_COMMIT_BRANCH == "beta"
   before_script:
-    - shfmt -i 2 -ci -mn  -d  entrypoint.sh  
+    - shfmt -i 2 -ci -mn  -d  entrypoint.sh
   script:
     - shellcheck *.sh  | tee  /tmp/$CI_COMMIT_SHA/reports/shellcheck-lint-report.txt
     - ansible-lint . --exclude .gitlab-ci.yml -x expirimental --profile safety -f codeclimate | tee /tmp/$CI_COMMIT_SHA/reports/ansible-lint-report.json
@@ -172,11 +172,11 @@ alpha:
 
 code_quality:
   artifacts:
-    paths: 
+    paths:
       - gl-code-quality-report.json
       - /tmp/$CI_COMMIT_SHA/reports/ansible-lint-report.json
     expire_in: 1 month
-  
+
 runner-postrun:
   stage: cleanup
   script:
