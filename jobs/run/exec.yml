@@ -1,7 +1,7 @@
-- name: Bootstrap Galera Cluster
+- name: Start new cluster
   shell: mysqld --wsrep-new-cluster &
   when: wsrep == "true"
 
-- name: Start MariaDB service without bootstrapping
+- name: Start new node
   shell: mysqld &
   when: wsrep == "false"

@@ -1,0 +1,33 @@
+- name: Wait for MariaDB to start
+  command: mysqladmin ping -u root -p"{{ database.root_password }}" -h localhost
+  register: result
+  until: result.rc == 0
+  retries: 30
+  delay: 10
+
+- name: Get wsrep status
+  command: mysql -u root -p"{{ database.root_password }}" -e "SHOW STATUS LIKE 'wsrep%';"
+  register: wsrep_status
+  changed_when: False
+
+- name: Set fact for wsrep_ready
+  set_fact:
+    wsrep_ready: "{{ item.split('\t')[1] == 'ON' }}"
+  when: "'wsrep_ready' in item"
+  loop: "{{ wsrep_status.stdout_lines }}"
+
+- name: Set fact for wsrep_cluster_status
+  set_fact:
+    wsrep_cluster_status: "{{ item.split('\t')[1] == 'Primary' }}"
+  when: "'wsrep_cluster_status' in item"
+  loop: "{{ wsrep_status.stdout_lines }}"
+
+- name: Check if cluster node is online
+  fail:
+    msg: "The cluster node is not online."
+  when: not (wsrep_ready and wsrep_cluster_status)
+
+- name: Print success message
+  debug:
+    msg: "The cluster node is online."
+  when: wsrep_ready and wsrep_cluster_status
