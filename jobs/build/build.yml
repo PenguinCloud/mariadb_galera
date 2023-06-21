@@ -1,13 +1,13 @@
 ---
 - name: Install maria db
   apt:
-    name: 
+    name:
       - python3-mysqldb
       - python3-pexpect
       - mariadb-server
     update_cache: true
 
-- name: Start mariadb 
+- name: Start mariadb
   shell: /etc/init.d/mariadb start
 
 - name: Secure MariaDB
@@ -34,7 +34,7 @@
         - 'y'
 
 - name: Start mariadb 
-  shell: /etc/init.d/mariadb stop       
+  shell: /etc/init.d/mariadb stop   
 
 - name: Set permission for directory in order to template the config files
   ansible.builtin.file:
