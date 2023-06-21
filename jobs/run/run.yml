@@ -28,12 +28,12 @@
   ignore_errors: true
 
 - name: Display result
-  debug: 
+  debug:
     msg: "Database {{ database.name }} exists"
   when: "database.name in db_result.stdout"
 
 - name: Display result
-  debug: 
+  debug:
     msg: "Database {{ database.name }} does not exist"
   when: "database.name not in db_result.stdout"
 
@@ -47,10 +47,10 @@
     priv: "*.*:ALL"
     state: present
 
-- name: Stop mariadb 
+- name: Stop mariadb
   shell: mysqladmin -u root -p"{{ database.root_password }}" shutdown
 
-- name: Template config file for galera 
+- name: Template config file for galera
   template:
     src: templates/60-galera.j2
     dest: /etc/mysql/mariadb.conf.d/60-galera.cnf
