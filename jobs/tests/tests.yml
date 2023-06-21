@@ -8,7 +8,7 @@
 - name: Get wsrep status
   command: mysql -u root -p"{{ database.root_password }}" -e "SHOW STATUS LIKE 'wsrep%';"
   register: wsrep_status
-  changed_when: False
+  changed_when: false
 
 - name: Set fact for wsrep_ready
   set_fact:

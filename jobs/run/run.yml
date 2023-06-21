@@ -3,7 +3,7 @@
   template:
     src: templates/50-server-cnf
     dest: /etc/mysql/mariadb.conf.d/50-server.cnf
-    force: yes
+    force: true
 
 - name: Start MariaDB service
   shell: mysqld_safe --skip-networking &
@@ -25,7 +25,7 @@
 - name: Check if database exists
   shell: mysql -u root -p'{{ database.root_password }}' -e "SHOW DATABASES LIKE '{{ database.name }}';"
   register: db_result
-  ignore_errors: True
+  ignore_errors: true
 
 - name: Display result
   debug: 
@@ -54,4 +54,4 @@
   template:
     src: templates/60-galera.j2
     dest: /etc/mysql/mariadb.conf.d/60-galera.cnf
-    force: yes
+    force: true
