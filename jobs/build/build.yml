@@ -1,20 +1,11 @@
 ---
-- name: Add mysql as a Group
-  group:
-    name: mysql
-
-- name: Add mysql as a User
-  user:
-    name: mysql
-    group: mysql
-
 - name: Install maria db
   apt:
     name: 
       - python3-mysqldb
       - python3-pexpect
       - mariadb-server
-    update_cache: yes
+    update_cache: true
 
 - name: Start mariadb 
   shell: /etc/init.d/mariadb start
@@ -49,7 +40,7 @@
   ansible.builtin.file:
     path: /etc/mysql/mariadb.conf.d
     state: directory
-    recurse: yes
+    recurse: true
     owner: "{{ run.user }}"
     group: "{{ run.user }}"
 
@@ -57,7 +48,7 @@
   ansible.builtin.file:
     path: /run/mysqld
     state: directory
-    recurse: yes
+    recurse: true
     owner: "{{ run.user }}"
     group: "{{ run.user }}"
 
@@ -65,7 +56,7 @@
   ansible.builtin.file:
     path: /var/lib/mysql
     state: directory
-    recurse: yes
+    recurse: true
     owner: "{{ run.user }}"
     group: "{{ run.user }}"
 
@@ -73,7 +64,7 @@
   ansible.builtin.file:
     path: /var/log/mysql
     state: directory
-    recurse: yes
+    recurse: true
     owner: "{{ run.user }}"
     group: "{{ run.user }}"
 
@@ -81,40 +72,6 @@
   ansible.builtin.file:
     path: /tmp
     state: directory
-    recurse: yes
+    recurse: true
     owner: "{{ run.user }}"
     group: "{{ run.user }}"
-
-# - name: Change file permissions for MariaDB binaries
-#   file:
-#     path: "{{ item.path }}"
-#     mode: "{{ item.mode }}"
-#     owner: "{{ run.user }}"
-#     group: "{{ run.user }}"
-#   loop:
-#     - { path: "/usr/bin/mariadb", mode: "0755" }
-#     - { path: "/usr/bin/mariadb-access", mode: "0755" }
-#     - { path: "/usr/bin/mariadb-admin", mode: "0755" }
-#     - { path: "/usr/bin/mariadb-binlog", mode: "0755" }
-#     - { path: "/usr/bin/mariadb-check", mode: "0755" }
-#     - { path: "/usr/bin/mariadb-conv", mode: "0755" }
-#     - { path: "/usr/bin/mariadb-convert-table-format", mode: "0755" }
-#     - { path: "/usr/bin/mariadb-dump", mode: "0755" }
-#     - { path: "/usr/bin/mariadb-dumpslow", mode: "0755" }
-#     - { path: "/usr/bin/mariadb-find-rows", mode: "0755" }
-#     - { path: "/usr/bin/mariadb-fix-extensions", mode: "0755" }
-#     - { path: "/usr/bin/mariadb-hotcopy", mode: "0755" }
-#     - { path: "/usr/bin/mariadb-import", mode: "0755" }
-#     - { path: "/usr/bin/mariadb-install-db", mode: "0755" }
-#     - { path: "/usr/bin/mariadb-plugin", mode: "0755" }
-#     - { path: "/usr/bin/mariadb-report", mode: "0755" }
-#     - { path: "/usr/bin/mariadb-secure-installation", mode: "0755" }
-#     - { path: "/usr/bin/mariadb-service-convert", mode: "0755" }
-#     - { path: "/usr/bin/mariadb-setpermission", mode: "0755" }
-#     - { path: "/usr/bin/mariadb-show", mode: "0755" }
-#     - { path: "/usr/bin/mariadb-slap", mode: "0755" }
-#     - { path: "/usr/bin/mariadb-tzinfo-to-sql", mode: "0755" }
-#     - { path: "/usr/bin/mariadb-upgrade", mode: "0755" }
-#     - { path: "/usr/bin/mariadb-waitpid", mode: "0755" }
-#     - { path: "/usr/bin/mariadbd-multi", mode: "0755" }
-#     - { path: "/usr/bin/mariadbd-safe", mode: "0755" }

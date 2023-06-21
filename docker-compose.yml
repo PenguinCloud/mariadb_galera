@@ -8,7 +8,7 @@ services:
     ports:
       - 33061:3306 
       - 44441:4444 
-      - 45671:4567 
+      - 45671:4567
       - 45681:4568 
     networks:
       - mariadbgalera
@@ -24,10 +24,10 @@ services:
     image: 'penguintech/mariadbgalera'
     build: .
     ports:
-      - 33062:3306 
-      - 44442:4444 
-      - 45672:4567 
-      - 45682:4568 
+      - 33062:3306
+      - 44442:4444
+      - 45672:4567
+      - 45682:4568
     networks:
       - mariadbgalera
     environment:
@@ -46,3 +46,4 @@ services:
 
 networks:
   mariadbgalera:
+
