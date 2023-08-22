@@ -27,8 +27,6 @@ ENV WSREP="true"
 ENV NODE_NAME="node1"
 ENV NODE_ADDRESS="db1"
 
-
-
 # Switch to non-root user
 USER ptg-user
 
